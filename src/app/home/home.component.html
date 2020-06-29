@@ -1,0 +1,59 @@
+<main>
+
+  <section>
+    <header>
+      <h1>What is Execution Context?</h1>
+    </header>
+    <p>A wrapper to help manage the code that is running</p>
+  </section>
+
+  <section>
+    <header>
+      <h2>How Does it Work?</h2>
+    </header>
+    <p>When a javascript file first gets executed, a global execution context is created. This contains a global object
+      and reference to 'this'</p>
+    <p>Each function invocation within the file also creates its own execution context with an added reference to the
+      outer environment. These are all added to the execution stack</p>
+  </section>
+
+  <section>
+    <header>
+      <h3>2 Phases</h3>
+    </header>
+    <div class='diagram-container'>
+      <div class='global-object'>Global Object</div>
+      <div class='this'>'this'</div>
+      <div class='outer-environment'>Outer Environment</div>
+      <div class='hoisting' *ngIf='showPhaseOne'>
+        <div class='phase'>Phase 1</div>
+        <p>Hoisting</p>
+        <p>Setup memory space for variables and functions</p>
+      </div>
+      <div class='execution' *ngIf='!showPhaseOne'>
+        <div class='phase'>Phase 2</div>
+        <p>Execution</p>
+        <p>Run the code line by line</p>
+      </div>
+    </div>
+    <aside>
+      <p>* During phase 1, functions are saved in their entirety while variables are given a default value of undefined
+        if they aren't explicitly set</p>
+    </aside>
+  </section>
+
+  <section class='visuals'>
+    <header>
+      <h4>Call Stack</h4>
+    </header>
+    <div class="stack">
+      <ng-container *ngFor='let item of displayStack'>
+        <div class='stack-item'>{{item}}</div>
+      </ng-container>
+    </div>
+    <div></div>
+  </section>
+
+  <button (click)='callFunction()'>function</button>
+
+</main>
